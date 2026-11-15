@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Panel de soporte técnico de PcShield Store - JRM: gestiona incidencias y pedidos protegiendo los datos personales según el RGPD.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617">
+  <title>PcShield Store - JRM · Panel de soporte</title>
+
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    button,
+    [role="button"],
+    summary,
+    label,
+    a,
+    input,
+    select,
+    textarea {
+      touch-action: manipulation;
+    }
+
+    ::selection {
+      background-color: #bae6fd;
+      color: #0c4a6e;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-full overflow-x-hidden bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+  <a href="#contenido-principal" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-slate-900 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 dark:focus:bg-white dark:focus:text-slate-900">
+    Saltar al contenido principal
+  </a>
+
+  <!-- Cabecera principal -->
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:border-slate-800/80 dark:bg-slate-950/90 dark:supports-[backdrop-filter]:bg-slate-950/70">
+    <div class="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
+      <a href="#contenido-principal" class="flex min-w-0 items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950">
+        <span class="grid size-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 text-white shadow-sm shadow-sky-500/20" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-6">
+            <path d="M12 3 4.5 6v5.5c0 4.4 3.2 8.5 7.5 9.5 4.3-1 7.5-5.1 7.5-9.5V6L12 3Z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </span>
+        <div class="min-w-0">
+          <div class="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <h1 class="truncate text-lg font-bold tracking-tight text-slate-900 dark:text-white">PcShield Store</h1>
+            <span translate="no" class="rounded-md border border-sky-200 bg-sky-50 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-sky-700 dark:border-sky-500/30 dark:bg-sky-500/10 dark:text-sky-300">JRM</span>
+          </div>
+          <p class="truncate text-xs text-slate-500 dark:text-slate-400">Soporte técnico y pedidos</p>
+        </div>
+      </a>
+
+      <div class="ml-auto flex items-center gap-2 sm:gap-3">
+        <span class="hidden items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-700 sm:inline-flex dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300">
+          <span class="size-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+          Escudo RGPD activo
+        </span>
+        <a href="#nuevo-ticket" class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400 dark:focus-visible:ring-offset-slate-950">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Nuevo ticket
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido-principal" tabindex="-1" class="mx-auto w-full max-w-7xl scroll-mt-24 px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+    <!-- Tarjetas KPI -->
+    <section aria-labelledby="titulo-resumen" class="scroll-mt-24">
+      <div class="flex flex-wrap items-end justify-between gap-2">
+        <div>
+          <h2 id="titulo-resumen" class="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Resumen del sistema</h2>
+          <p class="mt-1 text-pretty text-sm text-slate-600 dark:text-slate-400">Estado de las incidencias y de la protección de datos en tiempo real.</p>
+        </div>
+        <p class="inline-flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+          <span class="size-1.5 animate-pulse rounded-full bg-sky-500" aria-hidden="true"></span>
+          Actualización automática
+        </p>
+      </div>
+
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <article class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <span class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sky-400 to-indigo-500" aria-hidden="true"></span>
+          <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0">
+              <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Total de tickets</h3>
+              <p class="mt-3 text-3xl font-bold tracking-tight tabular-nums text-slate-900 dark:text-white">
+                <span id="kpi-total" data-kpi="total">0</span>
+              </p>
+            </div>
+            <span class="grid size-11 shrink-0 place-items-center rounded-xl bg-sky-50 text-sky-600 dark:bg-sky-500/10 dark:text-sky-300" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                <path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7Z"/>
+                <path d="M9 5v14"/>
+              </svg>
+            </span>
+          </div>
+          <p class="mt-3 text-xs text-slate-500 dark:text-slate-400">Incidencias registradas en la bandeja</p>
+        </article>
+
+        <article class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <span class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-rose-500 to-red-600" aria-hidden="true"></span>
+          <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0">
+              <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Prioridad alta pendiente</h3>
+              <p class="mt-3 text-3xl font-bold tracking-tight tabular-nums text-red-600 dark:text-red-400">
+                <span id="kpi-alta" data-kpi="alta">0</span>
+              </p>
+            </div>
+            <span class="grid size-11 shrink-0 place-items-center rounded-xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-400" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                <path d="M12 9v4"/>
+                <path d="M10.3 3.6 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0Z"/>
+                <path d="M12 17h.01"/>
+              </svg>
+            </span>
+          </div>
+          <p class="mt-3 text-xs text-slate-500 dark:text-slate-400">Requieren atención inmediata</p>
+        </article>
+
+        <article class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <span class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-400 to-teal-500" aria-hidden="true"></span>
+          <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0">
+              <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Datos PII protegidos</h3>
+              <p class="mt-3 text-3xl font-bold tracking-tight tabular-nums text-slate-900 dark:text-white">
+                <span id="kpi-pii" data-kpi="pii">0</span>
+              </p>
+            </div>
+            <span class="grid size-11 shrink-0 place-items-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-300" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                <path d="M12 3 4.5 6v5.5c0 4.4 3.2 8.5 7.5 9.5 4.3-1 7.5-5.1 7.5-9.5V6L12 3Z"/>
+                <path d="M12 8v4"/>
+                <path d="M12 16h.01"/>
+              </svg>
+            </span>
+          </div>
+          <p class="mt-3 text-xs text-slate-500 dark:text-slate-400">Datos personales interceptados y ocultos</p>
+        </article>
+
+        <article class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <span class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-400 to-orange-500" aria-hidden="true"></span>
+          <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0">
+              <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Bloqueos de seguridad</h3>
+              <p class="mt-3 text-3xl font-bold tracking-tight tabular-nums text-slate-900 dark:text-white">
+                <span id="kpi-bloqueados" data-kpi="bloqueados">0</span>
+              </p>
+            </div>
+            <span class="grid size-11 shrink-0 place-items-center rounded-xl bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-300" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="m5.6 5.6 12.8 12.8"/>
+              </svg>
+            </span>
+          </div>
+          <p class="mt-3 text-xs text-slate-500 dark:text-slate-400">Ataques y rechazos detenidos</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Filtros y búsqueda -->
+    <section aria-labelledby="titulo-filtros" class="mt-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5 dark:border-slate-800 dark:bg-slate-900">
+      <h2 id="titulo-filtros" class="sr-only">Buscar y filtrar tickets</h2>
+      <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+        <div class="w-full lg:max-w-md">
+          <label for="buscador" class="block text-sm font-semibold text-slate-800 dark:text-slate-200">Buscar tickets</label>
+          <div class="relative mt-1.5">
+            <span class="pointer-events-none absolute inset-y-0 left-0 grid w-10 place-items-center text-slate-400 dark:text-slate-500" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                <circle cx="11" cy="11" r="7"/>
+                <path d="m20 20-3.5-3.5"/>
+              </svg>
+            </span>
+            <input
+              id="buscador"
+              name="busqueda"
+              type="search"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Autor, ubicación o mensaje…"
+              aria-describedby="buscador-ayuda"
+              class="w-full rounded-xl border border-slate-300 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus-visible:border-sky-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
+            >
+          </div>
+          <p id="buscador-ayuda" class="mt-1.5 text-xs text-slate-500 dark:text-slate-400">La búsqueda se aplica sin recargar la página.</p>
+        </div>
+
+        <fieldset class="min-w-0 lg:max-w-2xl">
+          <legend class="text-sm font-semibold text-slate-800 dark:text-slate-200">Filtrar por categoría</legend>
+          <div class="mt-1.5 flex flex-wrap gap-2">
+            <label class="cursor-pointer">
+              <input type="radio" name="categoria" value="TODAS" class="peer sr-only" checked>
+              <span class="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 peer-checked:border-slate-900 peer-checked:bg-slate-900 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-sky-500 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white dark:peer-checked:border-sky-400 dark:peer-checked:bg-sky-400 dark:peer-checked:text-slate-950 dark:peer-focus-visible:ring-offset-slate-900">Todas</span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="categoria" value="REDES" class="peer sr-only">
+              <span class="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 peer-checked:border-slate-900 peer-checked:bg-slate-900 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-sky-500 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white dark:peer-checked:border-sky-400 dark:peer-checked:bg-sky-400 dark:peer-checked:text-slate-950 dark:peer-focus-visible:ring-offset-slate-900">Redes</span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="categoria" value="HARDWARE" class="peer sr-only">
+              <span class="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 peer-checked:border-slate-900 peer-checked:bg-slate-900 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-sky-500 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white dark:peer-checked:border-sky-400 dark:peer-checked:bg-sky-400 dark:peer-checked:text-slate-950 dark:peer-focus-visible:ring-offset-slate-900">Hardware</span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="categoria" value="SOFTWARE" class="peer sr-only">
+              <span class="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 peer-checked:border-slate-900 peer-checked:bg-slate-900 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-sky-500 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white dark:peer-checked:border-sky-400 dark:peer-checked:bg-sky-400 dark:peer-checked:text-slate-950 dark:peer-focus-visible:ring-offset-slate-900">Software</span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="categoria" value="FACTURACION" class="peer sr-only">
+              <span class="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 peer-checked:border-slate-900 peer-checked:bg-slate-900 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-sky-500 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white dark:peer-checked:border-sky-400 dark:peer-checked:bg-sky-400 dark:peer-checked:text-slate-950 dark:peer-focus-visible:ring-offset-slate-900">Facturación</span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="categoria" value="SEGURIDAD" class="peer sr-only">
+              <span class="inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 peer-checked:border-slate-900 peer-checked:bg-slate-900 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-sky-500 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white dark:peer-checked:border-sky-400 dark:peer-checked:bg-sky-400 dark:peer-checked:text-slate-950 dark:peer-focus-visible:ring-offset-slate-900">Seguridad</span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </section>
+
+    <div class="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1fr)_380px] xl:items-start">
+      <!-- Bandeja de tickets -->
+      <section id="tickets" aria-labelledby="titulo-tickets" class="scroll-mt-28">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="min-w-0">
+            <h2 id="titulo-tickets" class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Bandeja de tickets</h2>
+            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+              <span id="contador-tickets" aria-live="polite">0 tickets</span>
+              <span aria-hidden="true">·</span>
+              Prioridad y estado visibles de un vistazo
+            </p>
+          </div>
+          <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-emerald-500" aria-hidden="true">
+              <path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10Z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+            Datos protegidos
+          </span>
+        </div>
+
+        <div id="lista-tickets" class="mt-5 grid gap-4" aria-busy="false">
+          <noscript>
+            <div class="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
+              Activa JavaScript para cargar, filtrar y proteger los tickets.
+            </div>
+          </noscript>
+
+          <div id="estado-vacio" class="flex flex-col items-center rounded-2xl border border-dashed border-slate-300 bg-white/60 px-6 py-14 text-center dark:border-slate-700 dark:bg-slate-900/40">
+            <span class="grid size-14 place-items-center rounded-2xl bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-500" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="size-7">
+                <path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7Z"/>
+                <path d="M9 5v14"/>
+              </svg>
+            </span>
+            <h3 class="mt-4 text-base font-semibold text-slate-900 dark:text-white">Todavía no hay tickets</h3>
+            <p class="mt-1 max-w-sm text-pretty text-sm text-slate-500 dark:text-slate-400">Crea el primer ticket desde el formulario y la vista previa RGPD ocultará los datos sensibles.</p>
+            <a href="#nuevo-ticket" class="mt-5 inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950">
+              Crear el primer ticket
+            </a>
+            <button
+              id="btn-quitar-filtros"
+              type="button"
+              style="display: none"
+              class="mt-3 inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true">
+                <path d="M18 6 6 18M6 6l12 12"/>
+              </svg>
+              Quitar filtros
+            </button>
+          </div>
+        </div>
+
+        <!-- Plantilla de tarjeta de ticket para el motor de datos -->
+        <template id="plantilla-ticket">
+          <article data-ticket class="relative flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex min-w-0 flex-wrap items-center gap-2">
+                <span data-prioridad class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-bold uppercase tracking-wide"></span>
+                <span data-estado class="inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold"></span>
+              </div>
+              <span data-id class="shrink-0 rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold tabular-nums text-slate-600 dark:bg-slate-800 dark:text-slate-300"></span>
+            </div>
+
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <h3 data-autor class="min-w-0 truncate text-sm font-semibold text-slate-900 dark:text-white"></h3>
+                <span class="text-slate-300 dark:text-slate-600" aria-hidden="true">·</span>
+                <span data-ubicacion class="inline-flex min-w-0 items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0" aria-hidden="true">
+                    <path d="M20 10c0 5-8 12-8 12s-8-7-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="2.5"/>
+                  </svg>
+                  <span data-ubicacion-texto class="truncate"></span>
+                </span>
+              </div>
+              <p data-mensaje class="mt-2 break-words text-pretty text-sm leading-relaxed text-slate-600 dark:text-slate-300"></p>
+            </div>
+
+            <ul data-pii class="flex flex-wrap gap-1.5" aria-label="Datos personales protegidos"></ul>
+
+            <details class="group rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-2 dark:border-slate-800 dark:bg-slate-950/40">
+              <summary class="flex cursor-pointer list-none items-center gap-1.5 rounded text-xs font-semibold text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-300 dark:focus-visible:ring-offset-slate-900 [&::-webkit-details-marker]:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 transition-transform group-open:rotate-90" aria-hidden="true">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+                Solución sugerida
+              </summary>
+              <p data-solucion class="mt-2 break-words text-pretty text-xs leading-relaxed text-slate-600 dark:text-slate-400"></p>
+            </details>
+
+            <div class="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4 dark:border-slate-800">
+              <span data-categoria class="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:bg-slate-800 dark:text-slate-400"></span>
+              <div class="flex flex-wrap items-center gap-2">
+                <button type="button" data-accion="resolver" class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm transition-colors hover:bg-emerald-50 hover:text-emerald-700 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-300 dark:focus-visible:ring-offset-slate-950">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5"/>
+                  </svg>
+                  <span data-etiqueta-accion>Marcar resuelto</span>
+                </button>
+                <button type="button" data-accion="eliminar" class="inline-flex items-center gap-1.5 rounded-lg border border-red-200 bg-white px-3 py-2 text-xs font-semibold text-red-700 shadow-sm transition-colors hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-red-500/30 dark:bg-slate-900 dark:text-red-300 dark:hover:bg-red-500/10 dark:focus-visible:ring-offset-slate-950">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5" aria-hidden="true">
+                    <path d="M3 6h18"/>
+                    <path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
+                    <path d="M10 11v6M14 11v6"/>
+                  </svg>
+                  <span>Eliminar</span>
+                </button>
+              </div>
+            </div>
+          </article>
+        </template>
+      </section>
+
+      <!-- Formulario de nuevo ticket -->
+      <aside id="nuevo-ticket" aria-labelledby="titulo-nuevo-ticket" class="scroll-mt-28 xl:sticky xl:top-24">
+        <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="flex items-start gap-3">
+            <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-sky-50 text-sky-600 dark:bg-sky-500/10 dark:text-sky-300" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+            </span>
+            <div class="min-w-0">
+              <h2 id="titulo-nuevo-ticket" class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Nuevo ticket</h2>
+              <p class="mt-1 text-pretty text-sm text-slate-500 dark:text-slate-400">Registra la incidencia. El escudo RGPD ocultará los datos sensibles antes de guardarla.</p>
+            </div>
+          </div>
+
+          <form id="form-nuevo-ticket" class="mt-5 space-y-4" autocomplete="off">
+            <div>
+              <label for="autor" class="block text-sm font-semibold text-slate-800 dark:text-slate-200">Autor</label>
+              <input
+                id="autor"
+                name="autor"
+                type="text"
+                autocomplete="name"
+                maxlength="80"
+                required
+                placeholder="Ej.: Laura Gómez"
+                class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus-visible:border-sky-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
+              >
+            </div>
+
+            <div>
+              <label for="ubicacion" class="block text-sm font-semibold text-slate-800 dark:text-slate-200">Ubicación</label>
+              <input
+                id="ubicacion"
+                name="ubicacion"
+                type="text"
+                autocomplete="off"
+                maxlength="80"
+                required
+                placeholder="Ej.: Aula A20"
+                class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus-visible:border-sky-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
+              >
+            </div>
+
+            <div>
+              <label for="categoria-ticket" class="block text-sm font-semibold text-slate-800 dark:text-slate-200">Categoría</label>
+              <select
+                id="categoria-ticket"
+                name="categoria"
+                required
+                class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm focus-visible:border-sky-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+              >
+                <option value="" disabled selected>Selecciona una categoría…</option>
+                <option value="REDES">Redes</option>
+                <option value="HARDWARE">Hardware</option>
+                <option value="SOFTWARE">Software</option>
+                <option value="FACTURACION">Facturación</option>
+                <option value="SEGURIDAD">Seguridad</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="mensaje" class="block text-sm font-semibold text-slate-800 dark:text-slate-200">Descripción de la incidencia</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="4"
+                maxlength="1000"
+                required
+                placeholder="Describe el problema sin incluir datos sensibles…"
+                aria-describedby="mensaje-ayuda alerta-inyeccion"
+                class="mt-1.5 w-full resize-y rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus-visible:border-sky-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
+              ></textarea>
+              <p id="mensaje-ayuda" class="mt-1.5 text-xs text-slate-500 dark:text-slate-400">Máximo 1000 caracteres. Los datos sensibles se anonimizan automáticamente.</p>
+            </div>
+
+            <div class="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4 dark:border-emerald-500/30 dark:bg-emerald-500/10">
+              <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-emerald-600 dark:text-emerald-300" aria-hidden="true">
+                  <path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10Z"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+                <h3 class="text-sm font-semibold text-emerald-900 dark:text-emerald-200">Vista previa protegida RGPD</h3>
+                <span class="ml-auto rounded-full border border-emerald-300 bg-white/70 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-emerald-700 dark:border-emerald-500/40 dark:bg-emerald-950/40 dark:text-emerald-300">Local</span>
+              </div>
+              <p class="mt-1.5 text-xs leading-relaxed text-emerald-800 dark:text-emerald-200/80">Los DNI, tarjetas bancarias e IPv4 se sustituyen por marcadores antes de guardar el ticket.</p>
+              <div id="vista-previa-rgpd" aria-live="polite" class="mt-3 min-h-16 rounded-lg border border-emerald-200 bg-white p-3 text-sm leading-relaxed text-slate-700 dark:border-emerald-500/30 dark:bg-slate-950 dark:text-slate-200">
+                <p class="text-slate-500 dark:text-slate-400">Escribe una descripción para ver aquí la versión anonimizada…</p>
+              </div>
+              <ul class="mt-3 flex flex-wrap gap-1.5" aria-label="Marcadores de datos protegidos">
+                <li class="rounded-md border border-emerald-200 bg-white/80 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-950/40 dark:text-emerald-300">[DNI_OCULTO]</li>
+                <li class="rounded-md border border-emerald-200 bg-white/80 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-950/40 dark:text-emerald-300">[TARJETA_OCULTA]</li>
+                <li class="rounded-md border border-emerald-200 bg-white/80 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-950/40 dark:text-emerald-300">[IP_OCULTA]</li>
+              </ul>
+            </div>
+
+            <div id="alerta-inyeccion" role="alert" aria-live="assertive" style="display: none" class="flex gap-3 rounded-xl border border-red-300 bg-red-50 p-3 text-sm text-red-800 dark:border-red-500/40 dark:bg-red-500/10 dark:text-red-200">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 size-5 shrink-0" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 8v5"/>
+                <path d="M12 16h.01"/>
+              </svg>
+              <div class="min-w-0">
+                <p id="alerta-inyeccion-titulo" class="font-semibold">Envío bloqueado por seguridad</p>
+                <p id="alerta-inyeccion-detalle" class="mt-1 text-xs leading-relaxed">Se ha detectado un intento de manipulación. Elimina frases como “ignora las instrucciones” para poder crear el ticket.</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2 sm:flex-row">
+              <button type="submit" class="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400 dark:focus-visible:ring-offset-slate-900">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true">
+                  <path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10Z"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+                Crear ticket
+              </button>
+              <button type="reset" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-900">
+                Limpiar
+              </button>
+            </div>
+
+            <p class="flex items-start gap-1.5 text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 size-3.5 shrink-0" aria-hidden="true">
+                <rect x="4" y="10" width="16" height="10" rx="2"/>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+              </svg>
+              Los tickets se guardan únicamente en este navegador mediante localStorage.
+            </p>
+          </form>
+        </section>
+      </aside>
+    </div>
+
+    <!-- Laboratorio de Pruebas RGPD -->
+    <section id="laboratorio-rgpd" aria-labelledby="titulo-laboratorio" class="mt-6 scroll-mt-28 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 dark:border-slate-800 dark:bg-slate-900">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div class="flex items-start gap-3">
+          <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-300" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+              <path d="M9 3h6"/>
+              <path d="M10 3v6l-5.2 9a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L14 9V3"/>
+              <path d="M7 15h10"/>
+            </svg>
+          </span>
+          <div class="min-w-0">
+            <h2 id="titulo-laboratorio" class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Laboratorio de Pruebas RGPD</h2>
+            <p class="mt-1 text-pretty text-sm text-slate-500 dark:text-slate-400">Comprueba con datos ficticios cómo el escudo detecta y anonimiza información sensible y bloquea intentos de manipulación.</p>
+          </div>
+        </div>
+        <span class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300">
+          <span class="size-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+          Entorno de pruebas seguro
+        </span>
+      </div>
+
+      <div class="mt-5 grid gap-6 lg:grid-cols-2">
+        <!-- Simulador de seguridad -->
+        <div class="min-w-0">
+          <h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200">Pruebas de seguridad</h3>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Pulsa un botón para procesar un texto ficticio con las protecciones reales de la aplicación.</p>
+
+          <div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Ejecutar pruebas de seguridad">
+            <button type="button" data-prueba="dni" class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-sky-500" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                <circle cx="8" cy="11" r="2"/>
+                <path d="M14 9h4M14 13h4M5 16c.8-1.3 1.9-2 3-2s2.2.7 3 2"/>
+              </svg>
+              DNI ficticio
+            </button>
+            <button type="button" data-prueba="tarjeta" class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-violet-500" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                <path d="M3 10h18"/>
+                <path d="M7 15h4"/>
+              </svg>
+              Tarjeta bancaria
+            </button>
+            <button type="button" data-prueba="ip" class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-emerald-500" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M3 12h18M12 3c2.5 2.5 3.8 5.6 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.6-3.8-9S9.5 5.5 12 3Z"/>
+              </svg>
+              Dirección IPv4
+            </button>
+            <button type="button" data-prueba="inyeccion" class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-950">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-rose-500" aria-hidden="true">
+                <path d="M12 3 4.5 6v5.5c0 4.4 3.2 8.5 7.5 9.5 4.3-1 7.5-5.1 7.5-9.5V6L12 3Z"/>
+                <path d="M12 8v4"/>
+                <path d="M12 16h.01"/>
+              </svg>
+              Prompt Injection
+            </button>
+          </div>
+
+          <button type="button" id="btn-ejecutar-todas" class="mt-3 inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400 dark:focus-visible:ring-offset-slate-950">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true">
+              <path d="m5 4 14 8-14 8V4Z"/>
+            </svg>
+            Ejecutar todas las pruebas
+          </button>
+
+          <h4 class="mt-5 text-sm font-semibold text-slate-800 dark:text-slate-200">Resultados</h4>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">El texto original es ficticio y nunca se guarda en el navegador.</p>
+          <ul id="resultados-laboratorio" aria-live="polite" class="mt-3 grid gap-2">
+            <li id="laboratorio-vacio" class="rounded-xl border border-dashed border-slate-300 bg-slate-50/60 px-4 py-6 text-center text-xs text-slate-500 dark:border-slate-700 dark:bg-slate-950/40 dark:text-slate-400">
+              Todavía no has ejecutado ninguna prueba. Elige un tipo de dato o pulsa «Ejecutar todas las pruebas».
+            </li>
+          </ul>
+        </div>
+
+        <!-- Gráfico de incidencias por categoría -->
+        <div class="min-w-0">
+          <h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200">Incidencias por categoría</h3>
+          <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Distribución actual de los tickets registrados en la bandeja.</p>
+          <div id="grafico-categorias" role="img" aria-label="Gráfico de barras con el número de incidencias por categoría" class="mt-3 rounded-xl border border-slate-200 bg-slate-50/60 p-4 dark:border-slate-800 dark:bg-slate-950/40">
+            <p class="text-xs text-slate-500 dark:text-slate-400">Cargando datos del gráfico…</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plantilla para las tarjetas de resultado de las pruebas -->
+      <template id="plantilla-resultado-prueba">
+        <li data-resultado-prueba class="rounded-xl border border-slate-200 bg-slate-50/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <p data-resultado-titulo class="text-sm font-semibold text-slate-900 dark:text-white"></p>
+            <span data-resultado-estado class="inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest"></span>
+          </div>
+          <dl class="mt-2 grid gap-2 text-xs">
+            <div>
+              <dt class="font-semibold text-slate-500 dark:text-slate-400">Texto de prueba</dt>
+              <dd data-resultado-original class="mt-0.5 break-words font-mono text-[11px] leading-relaxed text-slate-700 dark:text-slate-300"></dd>
+            </div>
+            <div>
+              <dt class="font-semibold text-slate-500 dark:text-slate-400">Resultado del escudo</dt>
+              <dd data-resultado-procesado class="mt-0.5 break-words font-mono text-[11px] leading-relaxed text-slate-700 dark:text-slate-300"></dd>
+            </div>
+          </dl>
+        </li>
+      </template>
+    </section>
+  </main>
+
+  <div id="aviso-persistencia" role="status" aria-live="polite" aria-atomic="true" style="display: none" class="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-md rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900 shadow-lg dark:border-amber-500/40 dark:bg-amber-500/10 dark:text-amber-200 sm:left-auto sm:right-6">
+    <p id="aviso-persistencia-texto"></p>
+  </div>
+
+  <!-- Pie de página -->
+  <footer class="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+    <div class="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8 dark:text-slate-400">
+      <p class="text-pretty">
+        <span class="font-semibold text-slate-700 dark:text-slate-200">PcShield Store - JRM</span>
+        <span aria-hidden="true">·</span>
+        Panel de soporte técnico y pedidos
+      </p>
+      <div class="flex flex-wrap items-center gap-2 text-xs">
+        <span class="rounded-full border border-slate-200 px-2.5 py-1 dark:border-slate-800">Proyecto DAW2</span>
+        <span class="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 font-semibold text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300">Cumplimiento RGPD</span>
+        <span class="rounded-full border border-slate-200 px-2.5 py-1 dark:border-slate-800">© 2026</span>
+        <span class="rounded-full border border-slate-200 px-2.5 py-1 dark:border-slate-800">Modo Autopiloto v99</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

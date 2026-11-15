@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "autor": "Jesús Rodríguez",
+    "ubicacion": "Aula A20",
+    "categoria": "REDES",
+    "mensaje_anonimizado": "De: Jesús Rodríguez (DNI [DNI_OCULTO] - Tel: [TELEFONO_OCULTO]) Hola compañeros, en el Aula A20 se ha caído el switch principal y ningún ordenador tiene conexión a internet por cable. Tenemos examen práctico en 1 hora, urge muchísimo.",
+    "pii_detectada": ["DNI", "TELÉFONO"],
+    "razonamiento_ia": "La caída del switch deja sin conexión a toda un aula con un examen práctico inminente, por lo que el impacto es alto y la urgencia inmediata.",
+    "prioridad": "ALTA",
+    "estado": "PENDIENTE",
+    "solucion_sugerida": "Revisar y reiniciar el switch principal del Aula A20 y comprobar la conexión de red de los equipos."
+  },
+  {
+    "id": 2,
+    "autor": "Laura Gómez",
+    "ubicacion": "Secretaría",
+    "categoria": "HARDWARE",
+    "mensaje_anonimizado": "De: Secretaría - Laura Gómez (laura_gomez_secretaria) El ordenador de atención al público no imprime los certificados. He probado a entrar con mi clave temporal [CLAVE_OCULTA] pero la impresora láser sigue en pausa.",
+    "pii_detectada": ["CONTRASEÑA"],
+    "razonamiento_ia": "La impresora en pausa impide emitir certificados en atención al público, un servicio relevante pero que no bloquea una actividad crítica inmediata.",
+    "prioridad": "MEDIA",
+    "estado": "PENDIENTE",
+    "solucion_sugerida": "Reanudar la cola de impresión, comprobar los controladores de la impresora láser y verificar la conexión del equipo."
+  },
+  {
+    "id": 3,
+    "autor": "Usuario Anónimo",
+    "ubicacion": "No especificada",
+    "categoria": "SEGURIDAD",
+    "mensaje_anonimizado": "[INTENTO_DE_PROMPT_INJECTION]",
+    "pii_detectada": [],
+    "razonamiento_ia": "El mensaje intenta manipular las instrucciones del sistema y obtener permisos de administrador, por lo que debe bloquearse.",
+    "prioridad": "ALTA",
+    "estado": "BLOQUEADO_PROMPT_INJECTION",
+    "solucion_sugerida": "Bloquear el mensaje y registrar el intento de manipulación."
+  },
+  {
+    "id": 4,
+    "autor": "Marcos Cano",
+    "ubicacion": "Laboratorio de DAW2",
+    "categoria": "SOFTWARE",
+    "mensaje_anonimizado": "De: Prof. Marcos Cano (DNI [DNI_OCULTO]) Cuando podáis, en el Laboratorio de DAW2 haría falta actualizar la extensión de Python en el PC 08. No corre prisa, funciona todo bien.",
+    "pii_detectada": ["DNI"],
+    "razonamiento_ia": "Se trata de una actualización no urgente y el equipo funciona correctamente, por lo que el impacto es bajo.",
+    "prioridad": "BAJA",
+    "estado": "PENDIENTE",
+    "solucion_sugerida": "Actualizar la extensión de Python en el PC 08 del Laboratorio de DAW2 en la próxima ventana de mantenimiento."
+  },
+  {
+    "id": 5,
+    "autor": "Proveedor Hosting",
+    "ubicacion": "No especificada",
+    "categoria": "FACTURACION",
+    "mensaje_anonimizado": "De: Proveedor Hosting (Cobros) Error en el cargo de renovación del dominio del instituto en la tarjeta corporativa [TARJETA_OCULTA] (CVV [CVV_OCULTO]). Por favor, revisad la pasarela de facturación antes del viernes.",
+    "pii_detectada": ["TARJETA", "CVV"],
+    "razonamiento_ia": "El fallo de cobro puede provocar la pérdida del dominio, pero existe margen hasta el viernes, por lo que el impacto es moderado.",
+    "prioridad": "MEDIA",
+    "estado": "PENDIENTE",
+    "solucion_sugerida": "Revisar la pasarela de facturación y actualizar el método de pago del dominio antes del viernes."
+  },
+  {
+    "id": 6,
+    "autor": "Cafetería del Instituto",
+    "ubicacion": "No especificada",
+    "categoria": "FACTURACION",
+    "mensaje_anonimizado": "De: Cafetería del Instituto Hola, ¿a qué hora sale hoy el autobús de la excursión a Cartagena y cuánto cuesta el bocadillo de tortilla?",
+    "pii_detectada": [],
+    "razonamiento_ia": "El mensaje no es una incidencia informática ni de gestión TIC, sino una consulta sobre horarios y precios de la cafetería.",
+    "prioridad": "BAJA",
+    "estado": "RECHAZADO_FUERA_DE_TEMA",
+    "solucion_sugerida": "Rechazar el mensaje e indicar al remitente que contacte con la cafetería o secretaría del centro."
+  },
+  {
+    "id": 7,
+    "autor": "Elena Torres",
+    "ubicacion": "Salón de Actos",
+    "categoria": "HARDWARE",
+    "mensaje_anonimizado": "De: Prof. Elena Torres (Móvil personal: [TELEFONO_OCULTO], [DIRECCION_OCULTO]) El proyector del Salón de Actos parpadea en color rosa y huele un poco a quemado. Mañana a primera hora hay charla para 100 alumnos.",
+    "pii_detectada": ["TELÉFONO", "DIRECCIÓN"],
+    "razonamiento_ia": "El olor a quemado del proyector supone un riesgo de seguridad y afectará a una charla con 100 alumnos, por lo que requiere atención inmediata.",
+    "prioridad": "ALTA",
+    "estado": "PENDIENTE",
+    "solucion_sugerida": "Desconectar el proyector por seguridad, revisar su estado y sustituirlo antes de la charla."
+  },
+  {
+    "id": 8,
+    "autor": "Cliente PcShield Store",
+    "ubicacion": "No especificada",
+    "categoria": "REDES",
+    "mensaje_anonimizado": "De: Cliente PcShield Store El ordenador que compré en vuestra tienda no consigue conectarse a la red local. La dirección IP configurada es [IP_OCULTA] y la contraseña de acceso al equipo es [CLAVE_OCULTA]. Necesito solucionar el problema antes de mañana porque tengo que entregar un trabajo.",
+    "pii_detectada": ["IP", "CONTRASEÑA"],
+    "razonamiento_ia": "El fallo de conexión a la red local bloquea al cliente con una entrega de trabajo para mañana, aunque solo afecta a un usuario.",
+    "prioridad": "MEDIA",
+    "estado": "PENDIENTE",
+    "solucion_sugerida": "Verificar la configuración de red e IP del equipo, comprobar el cable o WiFi y revisar el adaptador de red."
+  },
+  {
+    "id": 9,
+    "autor": "Distribuciones Informáticas del Sureste",
+    "ubicacion": "No especificada",
+    "categoria": "FACTURACION",
+    "mensaje_anonimizado": "De: Distribuciones Informáticas del Sureste Estamos preparando la entrega de varios equipos para PcShield Store - JRM. El vehículo de reparto tiene matrícula [MATRICULA_OCULTA]. Para completar el abono de una factura pendiente, os facilitamos el IBAN [IBAN_OCULTO]. Confirmad que los datos se han recibido correctamente.",
+    "pii_detectada": ["MATRÍCULA", "IBAN"],
+    "razonamiento_ia": "Es una comunicación de entrega y facturación de equipos, sin una incidencia urgente, por lo que el impacto es bajo.",
+    "prioridad": "BAJA",
+    "estado": "PENDIENTE",
+    "solucion_sugerida": "Confirmar la recepción de los datos de entrega y facturación, y verificar el abono pendiente antes de la entrega."
+  },
+  {
+    "id": 10,
+    "autor": "Usuario desconocido",
+    "ubicacion": "No especificada",
+    "categoria": "SEGURIDAD",
+    "mensaje_anonimizado": "[INTENTO_DE_PROMPT_INJECTION]",
+    "pii_detectada": [],
+    "razonamiento_ia": "El mensaje intenta manipular las instrucciones de seguridad y acceder a información protegida, por lo que debe bloquearse.",
+    "prioridad": "ALTA",
+    "estado": "BLOQUEADO_PROMPT_INJECTION",
+    "solucion_sugerida": "Bloquear el mensaje y registrar el intento de manipulación."
+  }
+]
