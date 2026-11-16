@@ -2,52 +2,13 @@
 
 **PcShield Store - JRM**
 
-## Índice de contenidos
+## Sobre este repositorio
 
-- **1.** Introducción y objetivo del taller
-- **2.** Requisitos previos y entregables
-  - 2.1. Requisitos previos
-  - 2.2. Entregables exigidos
-- **3.** Regla 0: personalización obligatoria del proyecto
-  - 3.1. Adaptación temática
-  - 3.2. Nombre definitivo e identidad del proyecto
-  - 3.3. Personalización de los archivos
-- **4.** Fase 1. Preparación del proyecto y el mapa para la IA (AGENTS)
-  - 4.1. Paso 1.1. Estructura de carpetas del proyecto
-  - 4.2. Paso 1.2. Archivo AGENTS.md (contexto raíz del proyecto)
-- **5.** Fase 2. Laboratorio de prompts en OpenCode
-  - 5.1. Paso 2.1. Archivo bandeja_entrada_sucia.txt
-  - 5.2. Paso 2.2. Técnicas de Prompt Engineering como comando
-  - 5.3. Modificación del alumno 1
-- **6.** Fase 3. Equipamos OpenCode con Skills
-  - 6.1. Paso 3.1. Instalación de una Skill oficial de diseño web
-  - 6.2. Paso 3.2. Creación de la Skill personalizada de calidad y escudo RGPD
-  - 6.3. Modificación del alumno 2
-- **7.** Fase 4. Construcción de la aplicación web con OpenSpec y Prompt Chaining
-  - 7.1. Paso 4.1. Inicialización de OpenSpec
-  - 7.2. Paso 4.2. Documentos proposal, spec y tasks
-  - 7.3. Paso 4.3. Ejecución del Prompt Chaining
-- **8.** Fase 5. Auditoría y mejora con Chain-of-Thought (CoT) y patrón Reflexión
-  - 8.1. Auditoría del funcionamiento y seguridad
-  - 8.2. Autocrítica, mejoras aplicadas y verificación posterior
-- **9.** Fase 6. Funcionalidad individual con OpenSpec y despliegue web
-  - 9.1. Paso 6.1. Especificación de la funcionalidad individual
-  - 9.2. Paso 6.2. Subida a GitHub y publicación de la aplicación
-- **10.** Pruebas finales y verificación de entregables
-  - 10.1. Comprobaciones técnicas
-  - 10.2. Pruebas funcionales del dashboard
-  - 10.3. Pruebas del Laboratorio de Pruebas RGPD
-  - 10.4. Verificación del gráfico y del despliegue
-  - 10.5. Verificación de entregables
-- **11.** Incidencias y soluciones aplicadas
-  - 11.1. Advertencias durante la validación de OpenSpec
-  - 11.2. Acceso restringido a la aplicación en Netlify
-- **12.** Conclusiones
-- **13.** Enlaces y referencias
-  - 13.1. Repositorio GitHub
-  - 13.2. Aplicación desplegada
-  - 13.3. Documentación y herramientas consultadas
-- **14.** Reto extra (opcional)
+Este repositorio forma parte de mi portfolio profesional y recoge el proyecto **PcShield Store - JRM**, una aplicación web para la gestión de incidencias y pedidos de una tienda online de informática, desarrollada aplicando Ingeniería de Prompts, Skills y OpenSpec sobre un flujo de trabajo asistido por inteligencia artificial.
+
+El proyecto fue creado originalmente en mi cuenta educativa de GitHub como parte del Taller UT2 del módulo de Fundamentos de Inteligencia Artificial Generativa, correspondiente al 2.º curso del Grado Superior en Desarrollo de Aplicaciones Web (DAW). Posteriormente, el repositorio se ha clonado en esta cuenta profesional con el propósito de conservar, documentar y exponer públicamente el trabajo como muestra de mis competencias en desarrollo web frontend, integración de herramientas de IA generativa y aplicación de buenas prácticas de protección de datos conforme al RGPD.
+
+La autoría, el proceso de desarrollo y la documentación técnica se mantienen íntegros respecto al proyecto original, de modo que esta versión constituye una evidencia representativa de mi trayectoria formativa y profesional.
 
 ## 1. Introducción y objetivo del taller
 
